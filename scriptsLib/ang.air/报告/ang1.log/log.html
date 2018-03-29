@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title lang="en">
+    script running report
+    </title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+
+    <link href="static//css/bootstrap.min.css" rel="stylesheet">
+    <link href="static//css/main.css" rel="stylesheet">
+
+    <link href="static//css/report.css" rel="stylesheet">
+    <link href="static//css/jquery.fancybox.css" rel="stylesheet">
+    <link href="static//css/animate.css" rel="stylesheet">
+
+    <script src="static//js/jquery-1.10.2.min.js"></script>
+    <script src="static//js/echarts/echarts.common.min.js"></script>
+    <script src="static//js/echarts/shine.js"></script>
+    <script src="static//js/jquery-lang.js" charset="utf-8" type="text/javascript"></script>
+    <script src="static//js/langpack/zh_CN.js" charset="utf-8" type="text/javascript"></script>
+    <script type="text/javascript">
+        var lang = new Lang();
+        lang.init({
+            defaultLang: 'en',
+            currentLang: 'zh'
+        });
+    </script>
+    <style>
+    h2.header {
+        background-color: #3498db;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    div.screen_holder {
+      /*position: relative;*/
+      position: absolute;
+      margin-top: 10px;
+    }
+
+    div.screen_holder img {
+      /*max-height: 600px;*/
+    }
+
+    img.crop_image {
+      display: block;
+    }
+
+    img.spot {
+      position: absolute;
+      width:50px;
+      height:50px;
+      margin-left: -25px;
+      margin-top: -25px;
+    }
+
+    img#gif{
+      max-width: 100%;
+      min-height: 50px;
+      max-height: 380px;
+    }
+    
+    div.rect {
+      position: absolute;
+      border:2px solid red;
+      border-radius: 5px;
+      z-index: 99;
+    }
+
+    p.desc {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .moa label {
+      font-size: 16px;
+    }
+
+    .moa .point {
+      font-size: 20px;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    pre {
+      background-color: #23241f;
+    }
+
+    img.error-img {
+      max-width: 70px !important;
+    }
+
+    .ztree span.glyphicon {
+      color: red;
+    }
+
+    .scale {
+      transform-origin:top left;
+    }
+
+    #main {
+      padding-top: 10px;
+      min-height: 600px;
+    }
+
+    .fast-nav-step {
+      position: fixed;
+      right: 30px;
+      bottom: 10px;
+      z-index: 10;
+      padding: 10px 20px;
+      margin-left: 30px;
+      background: rgba(222,222,222,0.8);
+    }
+
+    .fast-nav-step label {
+      display: block;
+      border-bottom: 1px solid #7f8c8d;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      color: #34495e;
+    }
+
+    .a-circle {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 25px;
+
+      padding-top: 4px;
+
+      text-align: center;
+      color: white; 
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+    
+    .fast-nav-step .a-circle:hover {
+      opacity: 0.9;
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);    
+    }
+
+    #nav_steps {
+      max-height: 600px;
+      transition: max-height 0.25s ease-in;
+    }
+
+    #nav_steps.collapsed {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.15s ease-out;
+    }
+
+    div.assert {
+      padding-left: 20px;
+    }
+    .gif-wrap {
+        max-height: 400px;
+        text-align: center;
+    }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container-fluid" style="max-width:1400px;">
+      <div class="row">
+        <div id="main" class="main col-md-12">
+
+          
+
+          <div class="material moa" >
+              <h2><span lang="en">Test Case</span> 
+              
+              <label class="red" lang="en">[Failed]</label>
+              
+            </h2>
+            
+                <h4><span lang="en">Author:</span> 叶新铭</h4>
+            
+            <h4>2018-03-29 16:25:49 -- 2018-03-29 16:34:25</h4>
+
+            <h2 class="header" lang="en">Assert: Test Steps Summary</h2>
+            <hr>
+            <div class="row">
+            
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_3">3</a>
+                  
+                    <span lang="en">Expected result:</span>检查资源
+                </div>
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_4">4</a>
+                  
+                    <span lang="en">Expected result:</span>阿牛哥logo
+                </div>
+              
+            
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_7">7</a>
+                  
+                    <span lang="en">Expected result:</span>显示更新进度
+                </div>
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_8">8</a>
+                  
+                    <span lang="en">Expected result:</span>隐藏微信登陆按钮
+                </div>
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_9">9</a>
+                  
+                    <span lang="en">Expected result:</span>进度条
+                </div>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_18">18</a>
+                  
+                    <span lang="en">Expected result:</span>有账号登陆过则自动登陆
+                </div>
+              
+            
+            </div>
+          </div>
+
+        <!-- 录屏 -->
+         <div class="row gif-wrap">
+          <div class="col-md-6">
+            
+              <p lang="en">No record information found.</p>
+            
+          </div>
+         </div>
+
+        <!--单步-->
+        
+        
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_1">
+
+            <h2 class="header">[main]Step 1 <span class="step_title" lang="en">clear_app</span> <span class="step_title">[2018-03-29 16:25:49]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>clear_app[u&#39;com.you9.klqp.ang1&#39;]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_2">
+
+            <h2 class="header">[main]Step 2 <span class="step_title" lang="en">start_app</span> <span class="step_title">[2018-03-29 16:25:53]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>start_app[u&#39;com.you9.klqp.ang1&#39;]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_3">
+
+            <h2 class="header">[main]Step 3 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-03-29 16:25:58]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522220935050.png" title="tpl1522220935050.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [-0.006, 0.141], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522311958142.jpg" title="log\1522311958142.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="1081.0" data-left="1264.0" style="top:1081.0px;left:1264.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="431"data-top="1033"data-height="97"data-left="1049"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 99.6%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_4">
+
+            <h2 class="header">[main]Step 4 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-03-29 16:25:58]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522220524854.png" title="tpl1522220524854.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.006, -0.101], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522311958608.jpg" title="log\1522311958608.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="462.0" data-left="1295.0" style="top:462.0px;left:1295.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="724"data-top="253"data-height="418"data-left="933"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_5">
+
+            <h2 class="header">[main]Step 5 <span class="step_title" lang="en">Sleep</span> <span class="step_title">[2018-03-29 16:26:00]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>等待2秒</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="True" id="main_script_6">
+
+            <h2 class="header">[main]Step 6 <span class="step_title" lang="en">Touch</span> <span class="step_title">[2018-03-29 16:26:20]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522311980718.jpg" title="log\1522311980718.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>寻找目标图片，触摸屏幕坐标&#39;&#39;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-alert"></span>
+                  <span lang="en">Execution failed</span>
+              </div>
+              <div>
+                <pre><code class="python">Traceback (most recent call last):
+  File &#34;airtest\utils\logwraper.py&#34;, line 73, in wrapper
+  File &#34;airtest\core\helper.py&#34;, line 114, in wrapper
+  File &#34;airtest\core\api.py&#34;, line 220, in touch
+  File &#34;airtest\utils\logwraper.py&#34;, line 73, in wrapper
+  File &#34;airtest\core\cv.py&#34;, line 58, in loop_find
+TargetNotFoundError: &#39;Picture Template(D:\\scriptsLib\\ang.air\\ang1.air\\tpl1522229339044.png) not found in screen&#39;
+</code></pre>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_7">
+
+            <h2 class="header">[main]Step 7 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-03-29 16:26:21]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522220465886.png" title="tpl1522220465886.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [-0.004, 0.14], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522311981300.jpg" title="log\1522311981300.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="1079.0" data-left="1270.0" style="top:1079.0px;left:1270.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="539"data-top="1033"data-height="93"data-left="1001"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 91.3%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_8">
+
+            <h2 class="header">[main]Step 8 <span class="step_title" lang="en">Assert not exists</span> <span class="step_title">[2018-03-29 16:26:25]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522220830256.png" title="tpl1522220830256.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [-0.001, 0.08], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522311985005.jpg" title="log\1522311985005.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片不存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_9">
+
+            <h2 class="header">[main]Step 9 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-03-29 16:26:25]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522220474659.png" title="tpl1522220474659.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.002, 0.168], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522311985605.jpg" title="log\1522311985605.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="1150.0" data-left="1285.0" style="top:1150.0px;left:1285.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="1460"data-top="1110"data-height="80"data-left="555"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 97.8%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_10">
+
+            <h2 class="header">[main]Step 10 <span class="step_title" lang="en">Wait</span> <span class="step_title">[2018-03-29 16:33:50]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522220819444.png" title="tpl1522220819444.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [-0.002, 0.081], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312430871.jpg" title="log\1522312430871.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="928.0" data-left="1275.0" style="top:928.0px;left:1275.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="700"data-top="836"data-height="185"data-left="925"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>等待目标图片出现</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_11">
+
+            <h2 class="header">[main]Step 11 <span class="step_title" lang="en">Touch</span> <span class="step_title">[2018-03-29 16:33:51]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522229339044.png" title="tpl1522229339044.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.004, 0.081], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312431428.jpg" title="log\1522312431428.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="927.0" data-left="1291.0" style="top:927.0px;left:1291.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="690"data-top="846"data-height="162"data-left="946"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>寻找目标图片，触摸屏幕坐标[1291, 927]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_12">
+
+            <h2 class="header">[main]Step 12 <span class="step_title" lang="en">Wait</span> <span class="step_title">[2018-03-29 16:33:59]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522232023099.png" title="tpl1522232023099.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [-0.352, -0.004], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312438974.jpg" title="log\1522312438974.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="711.0" data-left="380.0" style="top:711.0px;left:380.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="393"data-top="123"data-height="1176"data-left="184"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>等待目标图片出现</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_13">
+
+            <h2 class="header">[main]Step 13 <span class="step_title" lang="en">Touch</span> <span class="step_title">[2018-03-29 16:33:59]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522240492966.png" title="tpl1522240492966.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.429, -0.232], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312439511.jpg" title="log\1522312439511.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="126.0" data-left="2377.0" style="top:126.0px;left:2377.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="82"data-top="67"data-height="118"data-left="2336"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>寻找目标图片，触摸屏幕坐标[2377, 126]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_14">
+
+            <h2 class="header">[main]Step 14 <span class="step_title" lang="en">Touch</span> <span class="step_title">[2018-03-29 16:34:00]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312439941.jpg" title="log\1522312439941.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="-0.231" data-left="-0.452" style="top:-0.231px;left:-0.452px;">
+                        <!-- rect area -->
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>寻找目标图片，触摸屏幕坐标[-0.452, -0.231]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_15">
+
+            <h2 class="header">[main]Step 15 <span class="step_title" lang="en">Touch</span> <span class="step_title">[2018-03-29 16:34:00]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522240534924.png" title="tpl1522240534924.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.067, -0.066], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312440615.jpg" title="log\1522312440615.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="550.0" data-left="1451.0" style="top:550.0px;left:1451.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="476"data-top="362"data-height="376"data-left="1213"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>寻找目标图片，触摸屏幕坐标[1451, 550]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_16">
+
+            <h2 class="header">[main]Step 16 <span class="step_title" lang="en">stop_app</span> <span class="step_title">[2018-03-29 16:34:02]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>stop_app[u&#39;com.you9.klqp.ang1&#39;]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_17">
+
+            <h2 class="header">[main]Step 17 <span class="step_title" lang="en">start_app</span> <span class="step_title">[2018-03-29 16:34:04]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>start_app[u&#39;com.you9.klqp.ang1&#39;]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_18">
+
+            <h2 class="header">[main]Step 18 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-03-29 16:34:25]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="tpl1522310615447.png" title="tpl1522310615447.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.001, -0.002], resolution: [2560, 1440]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale" src="log\1522312465576.jpg" title="log\1522312465576.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="static//image/target.png" data-top="714.0" data-left="1282.0" style="top:714.0px;left:1282.0px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-width="2545"data-top="15"data-height="1399"data-left="10"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 100.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+        
+
+          <!-- 导航栏 -->
+          <div class="fast-nav-step">
+              <label><span lang="en">Steps navigation</span>
+              <button class="btn btn-info btn-sm" id="collapse_nav_step"><i class="glyphicon glyphicon-chevron-down"></i></button>
+              <button class="btn btn-info btn-sm" id="expand_nav_step"><i class="glyphicon glyphicon-chevron-up"></i></button>
+            </label>
+            <div id="nav_steps">
+            
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_1">1</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_2">2</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_3">3</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_4">4</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_5">5</a>
+                
+              
+                
+                <a class="a-circle bg-red" href="#main_script_6">6</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_7">7</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_8">8</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_9">9</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_10">10</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_11">11</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_12">12</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_13">13</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_14">14</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_15">15</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_16">16</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_17">17</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_18">18</a>
+                
+              
+            
+              <a class="a-circle bg-green" href="#">Top</a>
+            </div>
+          </div>
+
+
+        </div>
+      </div>  
+    </div>
+  
+    
+    <div class="footer">
+        <span lang="en">Related information</span>
+    </div> 
+    
+  
+  
+  <script src="static//js/bootstrap.min.js"></script>
+
+  <!-- hightlight js -->
+  <link href="static//css/monokai_sublime.min.css" rel="stylesheet">  
+  <script src="static//js/highlight.min.js"></script>  
+  <script >hljs.initHighlightingOnLoad();</script>
+
+  <script>
+  $(function() {
+      iframe = window.frameElement;
+      if (iframe) {
+          window.frameElement.setAttribute("allowfullscreen", "allowfullscreen")
+      }
+    $("#expand_nav_step").hide(); // init
+    $("#collapse_nav_step").click(function() {
+      $("#nav_steps").addClass('collapsed');
+      $(this).hide();
+      $("#expand_nav_step").show();
+    })
+
+    $("#expand_nav_step").click(function() {
+      $("#nav_steps").removeClass('collapsed');
+      $(this).hide();
+      $("#collapse_nav_step").show();
+    })
+  });
+
+  $(function(){
+    var scale = 0.5;
+    var imgWidth = 0;
+    var imgPercent = 0.7; 
+
+    $("img").error(function () {
+      var orsrc = $(this).attr("src")
+      if(!orsrc){ return }
+      if(orsrc.indexOf("report.gif") > -1){
+        setTimeout(function(){
+          //console.log($(this).attr("src"));
+          $(this).attr("src", 'report.gif?timestamp=' + new Date().getTime());
+          //console.log($(this).attr("src"));
+        }.bind(this), 5000)
+        return
+      }
+
+      $(this).unbind("error")
+      .addClass('error-img')
+      .attr("src", "static//image/broken.png")
+      .attr("orgin-src", orsrc);
+    });
+    
+    //to trigger error event manual 
+    $("#gif").attr("src", "report.gif?timestamp=" + new Date().getTime());
+
+    $(".screen_holder").find("img.fancybox").load(function(e){
+
+      imgWidth = Math.max($(this).width(), imgWidth);
+      var dwidth = $("div.material.moa").width()
+      //图片最大宽度
+      var s = (dwidth*imgPercent)/imgWidth
+      s = Math.round(s * 100) / 100
+      scale_img(s);
+    })
+
+    function scale_img(i){
+      $(".screen_holder").find("img.fancybox").each(function(e){
+        var h = $(this).height();
+        var sc = 'scale('+ i +','+ i +')';
+        
+        var scale_css = {
+          '-ms-transform': sc,
+          '-webkit-transform': sc,
+          '-moz-transform': sc,
+          'transform': sc,
+        }
+        
+        $(this).css(scale_css)
+
+        var sp = $(this).siblings('img.spot');
+        var rect = $(this).siblings('div.rect');
+        
+        rect.css({
+          'top':rect.data('top') * i ,
+          'left':rect.data('left') * i ,
+          'width':rect.data('width') * i,
+          'height':rect.data('height') * i,
+        });
+        
+        var top = sp.data('top');
+        var left = sp.data('left');
+        sp.css({
+          'top':top*i,
+          'left':left*i,
+        })
+        
+        $(this).parents('.screen_holder').siblings('.screen_place').height(h*i);
+      });
+    }
+    //resize img
+    scale_img(scale);
+
+    $(window).resize(function() {
+      var ww = $('body').width();
+      if (ww < 900){
+        scale = 0.25;
+      }
+      else if (ww < 1100 ){
+        scale = 0.3;
+      }
+      else if( ww < 1300){
+        scale = 0.4;  
+      }else{
+        scale = 0.5;
+      }
+
+      if(imgWidth != 0){
+        //实时计算
+        var dwidth = $("div.material.moa").width()
+        //图片最大宽度
+        scale = (dwidth*imgPercent)/imgWidth
+        scale = Math.round(scale * 100) / 100          
+      }
+
+      scale_img(scale)
+    });
+    $(window).resize();
+
+  });
+  </script>
+
+  <script>
+  $(window).resize();
+  </script>
+  </body>
+</html>
